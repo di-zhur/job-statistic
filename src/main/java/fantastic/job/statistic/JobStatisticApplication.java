@@ -24,6 +24,7 @@ public class JobStatisticApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        // TODO: 24.02.2020 need async job 
         jobLoader.load();
     }
 
