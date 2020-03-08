@@ -24,7 +24,6 @@ public class JobInfo {
     private Area area;
     private Salary salary;
     private Experience experience;
-    //@Indexed
     private String description;
     private List<String> keySkills;
     private Boolean archived;

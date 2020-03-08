@@ -15,7 +15,6 @@ import reactor.retry.Retry;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Log4j2
 @Component
@@ -26,7 +25,7 @@ public class JobClient {
         .retryMax(10)
         .doOnRetry(e -> log.error("Retry JobClient: ", e.exception()));
 
-    public Flux<JobDetail> jobDetails(int areaId) {
+    public Flux<JobDetail> getJobDetails(int areaId) {
         final long currentTimeMillis = System.currentTimeMillis();
         return Flux.range(0, 30)
             .flatMap(index -> {
@@ -69,12 +68,8 @@ public class JobClient {
             .retryWhen(defaultRetry);
     }
 
-    AtomicInteger atomicInteger = new AtomicInteger();
-
     public Flux<JobDetail> getJobDetail(long id) {
-        atomicInteger.incrementAndGet();
-        log.info("atomicInteger - {}", atomicInteger);
-        log.info("getJobDetail" + Thread.currentThread());
+        log.info("getJobDetail id {}", id);
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
             .scheme("https")
             .host("api.hh.ru")
