@@ -19,8 +19,8 @@ public class JobStatisticApplication implements ApplicationRunner {
     }
 
     public static void main(String[] args) {
-		SpringApplication.run(JobStatisticApplication.class, args);
-	}
+	SpringApplication.run(JobStatisticApplication.class, args);
+    }
 
     @Override
     public void run(ApplicationArguments args) {
